@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: biblioteca-postgres
+    environment:
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${DB_NAME:-BibliotecaDigital}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - app-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: biblioteca-api
+    ports:
+      - "5000:80"
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${DB_NAME:-BibliotecaDigital};Username=${DB_USER:-postgres};Password=${DB_PASSWORD:-postgres};
+    networks:
+      - app-network
+
+volumes:
+  postgres-data:
+    name: biblioteca-postgres-data
+networks:
+  app-network:
+    driver: bridge
