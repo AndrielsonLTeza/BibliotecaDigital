@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using BibliotecaDigital.Infrastructure.Data;
 using BibliotecaDigital.Core.Interfaces;
 using BibliotecaDigital.Core.Services;
+using BibliotecaDigital.Infrastructure.Data;
 using BibliotecaDigital.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,17 +11,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure o DbContext para PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Registre os repositórios e serviços
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
-// Configure o pipeline de requisições HTTP
+// ✅ Migrate o banco de dados depois de app.Build()
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+}
+
+// Configure o pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
