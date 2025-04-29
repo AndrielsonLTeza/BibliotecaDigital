@@ -59,13 +59,13 @@ Este comando irá:
 - Criar um container PostgreSQL
 - Compilar e criar um container para a API
 - Aplicar migrações ao banco de dados
-- Expor a API na porta 5000
+- Expor a API na porta 5000:8080
 
 ### 4. Acesse a API
 
-A API estará disponível em: http://localhost:5000
+A API estará disponível em: http://localhost:8080
 
-Documentação Swagger: http://localhost:5000/swagger
+Documentação Swagger: http://localhost:8080/swagger
 
 ## Endpoints da API
 
@@ -338,3 +338,26 @@ Verifique:
 1. Se está usando as rotas corretas conforme documentação
 2. Se a API está em execução (`docker ps`)
 3. Se não há erros nos logs (`docker-compose logs api`)
+
+## Alguns comandos que ajudaram 
+ 1. Execute com Docker Compose
+
+```bash
+docker-compose up -d
+```
+ 2. Parar de executar o Docker Compose
+
+```bash
+docker-compose down
+```
+ 3. Conferir se o containers estão online
+
+```bash
+docker ps
+```
+
+4. Mostrar o log da Api
+
+```bash
+docker-compose logs api
+```
