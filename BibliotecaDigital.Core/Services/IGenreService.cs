@@ -1,4 +1,6 @@
 using BibliotecaDigital.Core.Entities;
+using BibliotecaDigital.Core.Services;
+using BibliotecaDigital.Core.Interfaces;
 
 namespace BibliotecaDigital.Core.Services
 {

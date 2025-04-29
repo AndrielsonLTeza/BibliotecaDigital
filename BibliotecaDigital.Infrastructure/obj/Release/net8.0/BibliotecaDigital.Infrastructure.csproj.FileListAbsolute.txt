@@ -1,0 +1,16 @@
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.AssemblyInfo.cs
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.sourcelink.json
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\bin\Release\net8.0\BibliotecaDigital.Infrastructure.deps.json
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\bin\Release\net8.0\BibliotecaDigital.Infrastructure.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\bin\Release\net8.0\BibliotecaDigital.Infrastructure.pdb
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\bin\Release\net8.0\BibliotecaDigital.Core.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\bin\Release\net8.0\BibliotecaDigital.Core.pdb
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\Bibliote.788E14B6.Up2Date
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\refint\BibliotecaDigital.Infrastructure.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.pdb
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\ref\BibliotecaDigital.Infrastructure.dll

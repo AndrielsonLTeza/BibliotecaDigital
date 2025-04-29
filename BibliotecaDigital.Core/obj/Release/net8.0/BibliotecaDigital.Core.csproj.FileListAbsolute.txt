@@ -1,0 +1,12 @@
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\bin\Release\net8.0\BibliotecaDigital.Core.deps.json
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\bin\Release\net8.0\BibliotecaDigital.Core.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\bin\Release\net8.0\BibliotecaDigital.Core.pdb
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.AssemblyInfoInputs.cache
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.AssemblyInfo.cs
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.csproj.CoreCompileInputs.cache
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.sourcelink.json
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\refint\BibliotecaDigital.Core.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.pdb
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\ref\BibliotecaDigital.Core.dll
