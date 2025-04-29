@@ -63,9 +63,9 @@ Este comando irá:
 
 ### 4. Acesse a API
 
-A API estará disponível em: http://localhost:8080
+A API estará disponível em: http://localhost:5000
 
-Documentação Swagger: http://localhost:8080/swagger
+Documentação Swagger: http://localhost:5000/swagger
 
 ## Endpoints da API
 
