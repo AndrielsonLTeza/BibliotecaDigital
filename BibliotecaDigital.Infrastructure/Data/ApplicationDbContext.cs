@@ -1,6 +1,5 @@
 using BibliotecaDigital.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-using BibliotecaDigital.Infrastructure.Data;
 
 namespace BibliotecaDigital.Infrastructure.Data
 {
@@ -44,4 +43,3 @@ namespace BibliotecaDigital.Infrastructure.Data
         }
     }
 }
-

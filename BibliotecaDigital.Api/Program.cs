@@ -1,27 +1,35 @@
+using Microsoft.EntityFrameworkCore;
+using BibliotecaDigital.Infrastructure.Data;
 using BibliotecaDigital.Core.Interfaces;
 using BibliotecaDigital.Core.Services;
-using BibliotecaDigital.Infrastructure.Data;
 using BibliotecaDigital.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Registre o DbContext com a string de conexão adequada
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))); // Ajuste se necessário
+// Adicione serviços ao contêiner
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// Registre os outros serviços
+// Configure o DbContext para PostgreSQL
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registre os repositórios e serviços
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 
-// Adicione outros serviços necessários, como controllers
-builder.Services.AddControllers();
-
 var app = builder.Build();
 
-// Configuração de pipeline de middleware
-app.UseAuthorization();
+// Configure o pipeline de requisições HTTP
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
+app.UseHttpsRedirection();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

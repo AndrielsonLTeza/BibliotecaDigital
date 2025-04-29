@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
     container_name: biblioteca-api
     ports:
-      - "5000:80"
+      - "5000:8080"
     depends_on:
       - postgres
     environment:
