@@ -56,6 +56,11 @@ AutoMapper
 git clone https://github.com/seu-usuario/biblioteca-digital.git
 cd biblioteca-digital
 ```
+### 1.1. Compilação do projeto   
+
+```bash
+dotnet build
+```
 
 ### 2. Configure variáveis de ambiente (opcional)
 
