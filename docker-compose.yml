@@ -1,11 +1,13 @@
+version: '3.9'
+
 services:
   postgres:
     image: postgres:latest
     container_name: biblioteca-postgres
     environment:
-      - POSTGRES_USER=${DB_USER:-postgres}
-      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
-      - POSTGRES_DB=${DB_NAME:-BibliotecaDigital}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=minhaSenha123
+      - POSTGRES_DB=BibliotecaDigital
     ports:
       - "5432:5432"
     volumes:
@@ -25,13 +27,15 @@ services:
       - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${DB_NAME:-BibliotecaDigital};Username=${DB_USER:-postgres};Password=${sua_senha};
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=BibliotecaDigital;Username=postgres;Password=minhaSenha123
     networks:
       - app-network
 
 volumes:
   postgres-data:
     name: biblioteca-postgres-data
+
 networks:
   app-network:
     driver: bridge
+    name: app-network
