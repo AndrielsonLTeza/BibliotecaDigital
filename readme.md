@@ -392,3 +392,18 @@ docker ps
 ```bash
 docker-compose logs api
 ```
+
+5. Limpar Compilacão anterior
+   
+Este comando limpa os arquivos de saída gerados por uma compilação anterior. 
+```bash
+dotnet clean
+```
+
+
+6. Compilar Projeto
+   
+Este comando compila um projeto .NET e todas as suas dependências. 
+```bash
+dotnet build
+```
