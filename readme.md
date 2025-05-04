@@ -294,33 +294,37 @@ DELETE /books/{id}
 
 ```
 BibliotecaDigital/
-├── BibliotecaDigital.Core/
-│   ├── Entities/
+├── BibliotecaDigital.Core/             # Camada de domínio
+│   ├── Entities/                       # Entidades (Book, Genre)
 │   │   ├── Book.cs
 │   │   └── Genre.cs
-│   ├── Interfaces/
+│   ├── Interfaces/                     # Interfaces de Repositórios
 │   │   ├── IBookRepository.cs
 │   │   └── IGenreRepository.cs
-│   └── Services/
+│   └── Services/                       # Serviços de negócio
 │       ├── BookService.cs
 │       ├── GenreService.cs
 │       ├── IBookService.cs
 │       └── IGenreService.cs
-├── BibliotecaDigital.Infrastructure/
-│   ├── Data/
+├── BibliotecaDigital.Infrastructure/   # Infraestrutura e acesso a dados
+│   ├── Data/                           # Contexto do banco de dados (AppDbContext)
 │   │   └── ApplicationDbContext.cs
-│   └── Repositories/
+│   ├── Mappings/                       # Configurações do EF Core
+│   └── Repositories/                   # Implementações dos repositórios
 │       ├── BookRepository.cs
 │       └── GenreRepository.cs
-├── BibliotecaDigital.Api/
-│   ├── Controllers/
+├── BibliotecaDigital.Api/              # Projeto principal da API
+│   ├── Controllers/                    # Controllers da API (Books, Genres)
 │   │   ├── BooksController.cs
 │   │   └── GenresController.cs
-│   ├── Program.cs
-│   └── appsettings.json
-├── docker-compose.yml
-├── Dockerfile
-└── README.md
+│   ├──  Program.cs                     # Ponto de entrada da aplicação
+│   └── appsettings.json                # Configurações da aplicação
+├── .dockerignore                       # Arquivos ignorados no build Docker
+├── .gitignore                          # Arquivos ignorados no Git
+├── BibliotecaDigital.sln               # Solução do projeto
+├── Dockerfile                          # Dockerfile para a API
+├── docker-compose.yml                  # Orquestração com PostgreSQL
+└── README.md   
 ```
 
 ## Diagrama de Arquitetura
