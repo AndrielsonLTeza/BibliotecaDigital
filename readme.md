@@ -10,6 +10,13 @@ O projeto está organizado em três camadas principais:
 - **BibliotecaDigital.Infrastructure**: Implementação do DbContext, repositórios e persistência
 - **BibliotecaDigital.Api**: Controladores REST, configuração de DI e endpoints
 
+## Funcionalidades
+-Cadastro de livros com título, autor, ISBN, ano de publicação e gênero.
+-Cadastro de gêneros literários.
+-Relacionamento entre livros e seus respectivos gêneros.
+-API RESTful com suporte a operações CRUD.
+-Integração com Swagger para documentação e testes da API.
+
 ## Modelo de Dados
 
 ### Entidade Gênero
@@ -25,10 +32,21 @@ O projeto está organizado em três camadas principais:
 - PublishedYear (int, obrigatório)
 - GenreId (int, chave estrangeira)
 
+## Tecnologias Utilizadas
+ASP.NET Core 8.0
+Entity Framework Core
+PostgreSQL (ou outro banco relacional)
+Swagger
+AutoMapper
+
 ## Pré-requisitos
 
 - [Docker](https://www.docker.com/products/docker-desktop/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+- .NET SDK 8.0
+-PostgreSQL (ou outro banco configurado no appsettings.json)
+-Visual Studio 2022 ou Visual Studio Code
+-Ferramenta de gerenciamento de pacotes (NuGet)
 
 ## Como Executar o Projeto
 
@@ -48,8 +66,13 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 DB_NAME=BibliotecaDigital
 ```
+### 3. Criação e execução do Docker Compose
 
-### 3. Execute com Docker Compose
+### 3.1. Construção com Docker Compose
+```bash
+docker-compose up --build
+```
+### 3.2. Execute com Docker Compose
 
 ```bash
 docker-compose up -d
@@ -349,6 +372,10 @@ docker-compose up -d
 
 ```bash
 docker-compose down
+```
+2.1 Parar e apagar o Docker Compose
+```bash
+docker-compose down -v
 ```
  3. Conferir se o containers estão online
 
