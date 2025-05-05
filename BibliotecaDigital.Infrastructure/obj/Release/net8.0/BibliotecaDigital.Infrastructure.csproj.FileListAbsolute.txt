@@ -14,3 +14,5 @@ C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructu
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\refint\BibliotecaDigital.Infrastructure.dll
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.pdb
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\ref\BibliotecaDigital.Infrastructure.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\bin\Release\net8.0\BibliotecaDigital.Infrastructure.runtimeconfig.json
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Infrastructure\obj\Release\net8.0\BibliotecaDigital.Infrastructure.genruntimeconfig.cache

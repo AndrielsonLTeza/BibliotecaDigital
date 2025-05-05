@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <!-- Dependências para OpenAPI (Swagger) -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
 
     <!-- Dependências do Entity Framework Core e PostgreSQL -->
@@ -24,6 +26,8 @@
     <!-- Referências a projetos internos -->
     <ProjectReference Include="..\BibliotecaDigital.Core\BibliotecaDigital.Core.csproj" />
     <ProjectReference Include="..\BibliotecaDigital.Infrastructure\BibliotecaDigital.Infrastructure.csproj" />
+    <ProjectReference Include="..\BibliotecaDigital.Service\BibliotecaDigital.Service.csproj" />
+
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\bin\Debug\net8.0\BibliotecaDigital.Core.deps.json
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\bin\Debug\net8.0\BibliotecaDigital.Core.dll
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\bin\Debug\net8.0\BibliotecaDigital.Core.pdb
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Debug\net8.0\BibliotecaDigital.Core.csproj.AssemblyReference.cache
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Debug\net8.0\BibliotecaDigital.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Debug\net8.0\BibliotecaDigital.Core.AssemblyInfoInputs.cache
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Debug\net8.0\BibliotecaDigital.Core.AssemblyInfo.cs

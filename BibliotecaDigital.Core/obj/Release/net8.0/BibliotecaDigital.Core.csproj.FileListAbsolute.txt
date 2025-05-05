@@ -10,3 +10,4 @@ C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Rel
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\refint\BibliotecaDigital.Core.dll
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.pdb
 C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\ref\BibliotecaDigital.Core.dll
+C:\Users\andri\Documents\GitHub\BibliotecaDigital\BibliotecaDigital.Core\obj\Release\net8.0\BibliotecaDigital.Core.csproj.AssemblyReference.cache

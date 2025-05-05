@@ -12,6 +12,9 @@ RUN dotnet restore
 COPY BibliotecaDigital.Core/. ./BibliotecaDigital.Core/
 COPY BibliotecaDigital.Infrastructure/. ./BibliotecaDigital.Infrastructure/
 COPY BibliotecaDigital.Api/. ./BibliotecaDigital.Api/
+COPY BibliotecaDigital.Service/. ./BibliotecaDigital.Service/
+COPY BibliotecaDigital.Dto/. ./BibliotecaDigital.Dto/
+
 
 # Build and publish
 RUN dotnet publish -c Release -o out
