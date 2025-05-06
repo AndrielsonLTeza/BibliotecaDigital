@@ -2,6 +2,7 @@ using BibliotecaDigital.Core.Entities;
 using BibliotecaDigital.Core.Interfaces;
 using BibliotecaDigital.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using BibliotecaDigital.Core.Interfaces;
 
 namespace BibliotecaDigital.Infrastructure.Repositories
 {

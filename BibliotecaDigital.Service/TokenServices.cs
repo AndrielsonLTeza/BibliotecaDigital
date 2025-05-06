@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+
 namespace BibliotecaDigital.Service
 {
     public class TokenService : ITokenService
@@ -17,7 +18,7 @@ namespace BibliotecaDigital.Service
             _configuration = configuration;
         }
 
-        public string GenerateToken(ApplicationUser user, IList<string> roles)
+        public string GenerateToken(User user, IList<string> roles)
         {
             var claims = new List<Claim>
             {

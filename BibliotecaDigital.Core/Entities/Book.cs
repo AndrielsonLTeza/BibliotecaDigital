@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BibliotecaDigital.Core.Interfaces;
 
 namespace BibliotecaDigital.Core.Entities
 {

@@ -4,6 +4,7 @@ using BibliotecaDigital.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace BibliotecaDigital.Infrastructure.Services
 {
@@ -15,6 +16,7 @@ namespace BibliotecaDigital.Infrastructure.Services
         {
             _context = context;
         }
+
 
         public async Task<User> GetUserById(int id)
         {
@@ -67,5 +69,17 @@ namespace BibliotecaDigital.Infrastructure.Services
             var affectedRows = await _context.SaveChangesAsync();
             return affectedRows > 0;
         }
+
+        public async Task<User> GetUserFromClaims(ClaimsPrincipal user){
+             if (user == null || !user.Identity.IsAuthenticated)
+                return null;
+
+            var emailClaim = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+            if (emailClaim == null)
+            return null;
+
+             return await GetUserByEmail(emailClaim.Value);
+        }
+
     }
 }
