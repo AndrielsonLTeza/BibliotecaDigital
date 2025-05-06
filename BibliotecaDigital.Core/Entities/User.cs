@@ -6,15 +6,13 @@ namespace BibliotecaDigital.Core.Entities
 {
     public class User
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public bool Ativo { get; set; } = true;
-        public string Role { get; set; } = "Usuario";
-        public DateTime DataCadastro { get; set; } = DateTime.Now;
-        
-        // Propriedade de navegação para empréstimos
-        public ICollection<Loan> Emprestimos { get; set; }
+       
+    public int Id { get; set; }
+    public string UserName { get; set; }
+    public string Password { get; set; }
+    public string Email { get; set; }
+    // Propriedade de navegação para empréstimos
+    public List<string> Roles { get; set; } = new List<string>();
+
     }
 }

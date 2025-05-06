@@ -18,12 +18,3 @@ namespace BibliotecaDigital.Infrastructure.Services
     }
 }
 
-// BibliotecaDigital.Core/Interfaces/IPasswordHashService.cs
-namespace BibliotecaDigital.Core.Interfaces
-{
-    public interface IPasswordHashService
-    {
-        string HashPassword(string password);
-        bool VerifyPassword(string password, string hashedPassword);
-    }
-}
