@@ -1,11 +1,18 @@
+using BibliotecaDigital.Core.DTOs;
 using BibliotecaDigital.Core.Entities;
-using BibliotecaDigital.Core.Services;
+using BibliotecaDigital.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BibliotecaDigital.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BooksController : ControllerBase
     {
         private readonly IBookService _bookService;
@@ -16,80 +23,258 @@ namespace BibliotecaDigital.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetAllBooks()
+        [AllowAnonymous] // Permite acesso público para listar livros
+        public async Task<ActionResult<IEnumerable<BookResponseDto>>> GetAllBooks()
         {
             var books = await _bookService.GetAllBooksAsync();
-            return Ok(books);
+            
+            var response = books.Select(b => new BookResponseDto
+            {
+                Id = b.Id,
+                Title = b.Title,
+                Author = b.Author,
+                ISBN = b.ISBN,
+                Description = b.Description,
+                PublicationYear = b.PublicationYear,
+                Publisher = b.Publisher,
+                Language = b.Language,
+                PageCount = b.PageCount,
+                CoverImageUrl = b.CoverImageUrl,
+                Category = b.Category,
+                IsAvailable = b.IsAvailable,
+                CreatedAt = b.CreatedAt,
+                UpdatedAt = b.UpdatedAt
+            });
+            
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Book>> GetBookById(int id)
+        [AllowAnonymous] // Permite acesso público para ver detalhes de um livro
+        public async Task<ActionResult<BookResponseDto>> GetBookById(int id)
         {
             var book = await _bookService.GetBookByIdAsync(id);
+            
             if (book == null)
-                return NotFound();
-
-            return Ok(book);
-        }
-
-        [HttpGet("by-genre/{genreId}")]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooksByGenre(int genreId)
-        {
-            var books = await _bookService.GetBooksByGenreIdAsync(genreId);
-            return Ok(books);
+                return NotFound($"Livro com ID {id} não encontrado");
+                
+            var response = new BookResponseDto
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                ISBN = book.ISBN,
+                Description = book.Description,
+                PublicationYear = book.PublicationYear,
+                Publisher = book.Publisher,
+                Language = book.Language,
+                PageCount = book.PageCount,
+                CoverImageUrl = book.CoverImageUrl,
+                Category = book.Category,
+                IsAvailable = book.IsAvailable,
+                CreatedAt = book.CreatedAt,
+                UpdatedAt = book.UpdatedAt
+            };
+            
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Book>> CreateBook(Book book)
+        [Authorize(Roles = "Admin,Librarian")] // Apenas administradores e bibliotecários podem adicionar livros
+        public async Task<ActionResult> CreateBook([FromBody] BookCreateDto model)
         {
-            try
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+                
+            var book = new Book
             {
-                var createdBook = await _bookService.CreateBookAsync(book);
-                return CreatedAtAction(nameof(GetBookById), new { id = createdBook.Id }, createdBook);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                Title = model.Title,
+                Author = model.Author,
+                ISBN = model.ISBN,
+                Description = model.Description,
+                PublicationYear = model.PublicationYear,
+                Publisher = model.Publisher,
+                Language = model.Language,
+                PageCount = model.PageCount,
+                CoverImageUrl = model.CoverImageUrl,
+                Category = model.Category,
+                IsAvailable = true,
+                CreatedAt = DateTime.Now
+            };
+            
+            var bookId = await _bookService.CreateBookAsync(book);
+            
+            return CreatedAtAction(nameof(GetBookById), new { id = bookId }, 
+                $"Livro '{model.Title}' criado com sucesso");
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBook(int id, Book book)
+        [Authorize(Roles = "Admin,Librarian")] // Apenas administradores e bibliotecários podem atualizar livros
+        public async Task<ActionResult> UpdateBook(int id, [FromBody] BookUpdateDto model)
         {
-            if (id != book.Id)
-                return BadRequest("ID in URL does not match ID in request body");
-
-            try
-            {
-                await _bookService.UpdateBookAsync(book);
-                return NoContent();
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+                
+            var existingBook = await _bookService.GetBookByIdAsync(id);
+            if (existingBook == null)
+                return NotFound($"Livro com ID {id} não encontrado");
+                
+            // Atualizar apenas os campos que foram fornecidos
+            if (!string.IsNullOrWhiteSpace(model.Title))
+                existingBook.Title = model.Title;
+                
+            if (!string.IsNullOrWhiteSpace(model.Author))
+                existingBook.Author = model.Author;
+                
+            if (!string.IsNullOrWhiteSpace(model.ISBN))
+                existingBook.ISBN = model.ISBN;
+                
+            if (!string.IsNullOrWhiteSpace(model.Description))
+                existingBook.Description = model.Description;
+                
+            if (model.PublicationYear.HasValue)
+                existingBook.PublicationYear = model.PublicationYear.Value;
+                
+            if (!string.IsNullOrWhiteSpace(model.Publisher))
+                existingBook.Publisher = model.Publisher;
+                
+            if (!string.IsNullOrWhiteSpace(model.Language))
+                existingBook.Language = model.Language;
+                
+            if (model.PageCount.HasValue)
+                existingBook.PageCount = model.PageCount.Value;
+                
+            if (!string.IsNullOrWhiteSpace(model.CoverImageUrl))
+                existingBook.CoverImageUrl = model.CoverImageUrl;
+                
+            if (!string.IsNullOrWhiteSpace(model.Category))
+                existingBook.Category = model.Category;
+                
+            existingBook.UpdatedAt = DateTime.Now;
+            
+            var success = await _bookService.UpdateBookAsync(existingBook);
+            if (!success)
+                return StatusCode(500, "Erro ao atualizar o livro");
+                
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBook(int id)
+        [Authorize(Roles = "Admin")] // Apenas administradores podem excluir livros
+        public async Task<ActionResult> DeleteBook(int id)
         {
-            try
+            var book = await _bookService.GetBookByIdAsync(id);
+            if (book == null)
+                return NotFound($"Livro com ID {id} não encontrado");
+                
+            var success = await _bookService.DeleteBookAsync(id);
+            if (!success)
+                return StatusCode(500, "Erro ao excluir o livro");
+                
+            return NoContent();
+        }
+
+        [HttpPost("{id}/borrow")]
+        [Authorize] // Qualquer usuário autenticado pode emprestar um livro
+        public async Task<ActionResult> BorrowBook(int id)
+        {
+            var book = await _bookService.GetBookByIdAsync(id);
+            if (book == null)
+                return NotFound($"Livro com ID {id} não encontrado");
+                
+            if (!book.IsAvailable)
+                return BadRequest("Este livro não está disponível para empréstimo");
+                
+            // Obter o ID do usuário a partir do token
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("Usuário não identificado");
+                
+            if (!int.TryParse(userIdClaim.Value, out int userId))
+                return BadRequest("ID de usuário inválido");
+                
+            var success = await _bookService.BorrowBookAsync(id, userId);
+            if (!success)
+                return StatusCode(500, "Erro ao processar o empréstimo");
+                
+            return Ok($"Livro '{book.Title}' emprestado com sucesso");
+        }
+
+        [HttpPost("{id}/return")]
+        [Authorize] // Qualquer usuário autenticado pode devolver um livro
+        public async Task<ActionResult> ReturnBook(int id)
+        {
+            var book = await _bookService.GetBookByIdAsync(id);
+            if (book == null)
+                return NotFound($"Livro com ID {id} não encontrado");
+                
+            // Obter o ID do usuário a partir do token
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("Usuário não identificado");
+                
+            if (!int.TryParse(userIdClaim.Value, out int userId))
+                return BadRequest("ID de usuário inválido");
+                
+            var success = await _bookService.ReturnBookAsync(id, userId);
+            if (!success)
+                return BadRequest("Você não tem um empréstimo ativo para este livro");
+                
+            return Ok($"Livro '{book.Title}' devolvido com sucesso");
+        }
+
+        [HttpGet("search")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<BookResponseDto>>> SearchBooks([FromQuery] string term)
+        {
+            var books = await _bookService.SearchBooksAsync(term);
+            
+            var response = books.Select(b => new BookResponseDto
             {
-                await _bookService.DeleteBookAsync(id);
-                return NoContent();
-            }
-            catch (KeyNotFoundException)
+                Id = b.Id,
+                Title = b.Title,
+                Author = b.Author,
+                ISBN = b.ISBN,
+                Description = b.Description,
+                PublicationYear = b.PublicationYear,
+                Publisher = b.Publisher,
+                Language = b.Language,
+                PageCount = b.PageCount,
+                CoverImageUrl = b.CoverImageUrl,
+                Category = b.Category,
+                IsAvailable = b.IsAvailable,
+                CreatedAt = b.CreatedAt,
+                UpdatedAt = b.UpdatedAt
+            });
+            
+            return Ok(response);
+        }
+
+        [HttpGet("category/{category}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<BookResponseDto>>> GetBooksByCategory(string category)
+        {
+            var books = await _bookService.GetBooksByCategory(category);
+            
+            var response = books.Select(b => new BookResponseDto
             {
-                return NotFound();
-            }
+                Id = b.Id,
+                Title = b.Title,
+                Author = b.Author,
+                ISBN = b.ISBN,
+                Description = b.Description,
+                PublicationYear = b.PublicationYear,
+                Publisher = b.Publisher,
+                Language = b.Language,
+                PageCount = b.PageCount,
+                CoverImageUrl = b.CoverImageUrl,
+                Category = b.Category,
+                IsAvailable = b.IsAvailable,
+                CreatedAt = b.CreatedAt,
+                UpdatedAt = b.UpdatedAt
+            });
+            
+            return Ok(response);
         }
     }
 }

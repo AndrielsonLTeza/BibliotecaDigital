@@ -1,5 +1,6 @@
 using BibliotecaDigital.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace BibliotecaDigital.Infrastructure.Data
 {
@@ -16,6 +17,21 @@ namespace BibliotecaDigital.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //configue Entidade USer
+             modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.UserName).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Password).IsRequired();
+                
+                // Armazenar Roles como JSON
+                entity.Property(e => e.Roles)
+                    .HasConversion(
+                        v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
+                        v => JsonSerializer.Deserialize<List<string>>(v, new JsonSerializerOptions()));
+            });
 
             // Configure Genre entity
             modelBuilder.Entity<Genre>(entity =>
