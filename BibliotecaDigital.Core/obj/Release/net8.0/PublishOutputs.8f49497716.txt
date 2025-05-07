@@ -1,3 +1,0 @@
-C:\Users\andri\Documents\GitHub\BibliotecaDigital\out\BibliotecaDigital.Core.dll
-C:\Users\andri\Documents\GitHub\BibliotecaDigital\out\BibliotecaDigital.Core.deps.json
-C:\Users\andri\Documents\GitHub\BibliotecaDigital\out\BibliotecaDigital.Core.pdb

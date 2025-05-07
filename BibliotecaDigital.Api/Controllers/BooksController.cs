@@ -1,6 +1,7 @@
 using BibliotecaDigital.Core.DTOs;
 using BibliotecaDigital.Core.Entities;
 using BibliotecaDigital.Core.Interfaces;
+using BibliotecaDigital.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

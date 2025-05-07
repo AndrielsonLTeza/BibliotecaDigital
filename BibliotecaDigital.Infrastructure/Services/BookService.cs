@@ -1,5 +1,6 @@
 using BibliotecaDigital.Core.Entities;
 using BibliotecaDigital.Core.Interfaces;
+using BibliotecaDigital.Core.Services;
 using BibliotecaDigital.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -137,6 +138,26 @@ namespace BibliotecaDigital.Infrastructure.Services
                 .AsNoTracking()
                 .Where(b => b.Category == category)
                 .ToListAsync();
+        }
+
+        public Task<IEnumerable<Book>> GetBooksByGenreIdAsync(int genreId)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Book> IBookService.CreateBookAsync(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IBookService.UpdateBookAsync(Book book)
+        {
+            return UpdateBookAsync(book);
+        }
+
+        Task<bool> IBookService.DeleteBookAsync(int id)
+        {
+            return DeleteBookAsync(id);
         }
     }
 }
