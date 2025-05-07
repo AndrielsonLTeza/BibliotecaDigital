@@ -13,6 +13,7 @@ using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IBookService, BookService>();
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -92,6 +93,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
+
 
 var app = builder.Build();
 
